@@ -1,0 +1,67 @@
+<div class="todo-modal-container">
+  <div class="todo-card">
+    <div class="card-header">
+      <h3>Update Todo</h3>
+    </div>
+    <div class="card-body">
+      <form class="card-form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            #Title="ngModel"
+            [(ngModel)]="updateTodoModel.Title"
+            [ngClass]="{'invalid' : Title.touched && Title.invalid}"
+            autofocus
+            required
+            minlength="2"
+            maxlength="255"
+            class="form-control"
+            type="text"
+            id="title"
+            name="Title">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            #Description="ngModel"
+            [(ngModel)]="updateTodoModel.Description"
+            [ngClass]="{'invalid' : Description.touched && Description.invalid}"
+            autofocus
+            class="form-control"
+            type="text"
+            id="description"
+            name="Description">
+        </div>
+        <div class="form-group">
+          <label for="expiration-date">Expiration Date</label>
+          <input
+            #ExpirationDate="ngModel"
+            [(ngModel)]="updateTodoModel.ExpirationDate"
+            [ngClass]="{'invalid' : ExpirationDate.touched && ExpirationDate.invalid}"
+            autofocus
+            required
+            minlength="2"
+            maxlength="255"
+            class="form-control"
+            type="date"
+            id="expiration-date"
+            name="ExpirationDate">
+        </div>
+        <div class="form-group">
+          <label for="assigned-users">Assigned Users</label>
+          <div id="assigned-users" class="assigned-users">
+            <div class="username-list">
+              <span *ngIf="currentUser">{{ currentUser.Username }}</span>
+              <span *ngFor="let user of assignedUserList">{{ user.Username }} button</span>
+            </div>
+            <button type="button">1</button>
+          </div>
+        </div>
+
+        <div class="form-group form-actions mb-0">
+          <button [disabled]="!f.form.valid" class="btn btn-primary" type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

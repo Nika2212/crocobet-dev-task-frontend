@@ -1,0 +1,5 @@
+<div *ngIf="growlModel" class="growl-container" [ngClass]="{'growl-active' : appearGrowl}">
+  <div (click)="hideGrowl()" class="alert" [ngClass]="{'alert-danger' : growlModel.type === 2, 'alert-warning' : growlModel.type === 1, 'alert-success' : growlModel.type === 0}" role="alert">
+    {{ growlModel.message }}
+  </div>
+</div>

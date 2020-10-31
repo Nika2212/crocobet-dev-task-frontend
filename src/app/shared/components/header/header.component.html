@@ -1,0 +1,12 @@
+<header class="header">
+  <div class="brand">
+    <h3>Brand</h3>
+  </div>
+
+  <div *ngIf="currentUser" class="user">
+    <div class="avatar"></div>
+    <div class="username">
+      <label>{{ currentUser.Username }}</label>
+    </div>
+  </div>
+</header>

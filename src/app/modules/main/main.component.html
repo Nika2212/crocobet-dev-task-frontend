@@ -1,0 +1,85 @@
+<div class="dashboard-layout main">
+  <div class="header-component">
+    <croco-header></croco-header>
+  </div>
+  <div class="content-component">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 d-flex">
+          <div class="todos-container">
+            <div class="container-header ">
+              <h5>Your Ongoing Todos</h5>
+            </div>
+            <div class="container-body ongoing-todos">
+              <div class="todo-create-card">
+                <div class="create-wrapper">
+                  <label><span (click)="onCreate()">Create new todo</span> or <span>Assign to other</span></label>
+                </div>
+              </div>
+              <div *ngFor="let todo of currentOngoingTodos" class="todo-card">
+                <div class="front-face">
+                  <div class="todo-card-header">
+                    <label class="todo-title">{{ todo.Title }}</label>
+
+                    <button class="assigned-users">{{ todo.AssignedUserIds.length }}</button>
+                  </div>
+                  <div class="todo-card-body">
+                    <div class="todo-description">
+                      <p>{{ todo.Description }}</p>
+                    </div>
+                    <div class="todo-information">
+                      <span class="time-left">{{ todo.ExpirationDate | expirationCalculator }}</span>
+                      <span class="status ongoing">Ongoing</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="back-face">
+                  <button (click)="onStatusChange(todo)">1</button>
+                  <button (click)="onUpdate(todo)">2</button>
+                  <button (click)="onDelete(todo)">3</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-xl-6 d-flex">
+          <div class="todos-container">
+            <div class="container-header">
+              <h5>Your Completed Todos</h5>
+            </div>
+            <div class="container-body completed-todos">
+              <div *ngFor="let todo of currentCompletedTodos" class="todo-card">
+                <div class="front-face">
+                  <div class="todo-card-header">
+                    <label class="todo-title">{{ todo.Title }}</label>
+
+                    <button class="assigned-users">{{ todo.AssignedUserIds.length }}</button>
+                  </div>
+                  <div class="todo-card-body">
+                    <div class="todo-description">
+                      <p>{{ todo.Description }}</p>
+                    </div>
+                    <div class="todo-information">
+                      <span class="status completed">Completed</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="back-face">
+                  <button (click)="onStatusChange(todo)">1</button>
+                  <button (click)="onUpdate(todo)">2</button>
+                  <button (click)="onDelete(todo)">3</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-component">
+    <croco-footer></croco-footer>
+  </div>
+</div>
+
+<croco-create-todo-modal *ngIf="createTodoModalState" (onCreateEvent)="onCreateEvent($event)"></croco-create-todo-modal>
+<croco-update-todo-modal *ngIf="updateTodoModalState" [modelInput]="selectedTodo" (onUpdateEvent)="onUpdateEvent($event)"></croco-update-todo-modal>

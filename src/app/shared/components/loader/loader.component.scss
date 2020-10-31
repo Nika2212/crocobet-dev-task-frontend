@@ -1,0 +1,22 @@
+.loader {
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(114, 124, 245, .5);
+
+  z-index: 9;
+
+  span {
+    animation-duration: 320ms;
+  }
+}
