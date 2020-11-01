@@ -113,6 +113,8 @@
             border-radius: 3px;
             border: none;
             outline: none;
+            user-select: none;
+            pointer-events: none;
 
             background-color: rgba(114,124,245,.25);
 

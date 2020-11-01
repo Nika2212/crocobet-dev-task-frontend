@@ -13,7 +13,7 @@
             <div class="container-body ongoing-todos">
               <div class="todo-create-card">
                 <div class="create-wrapper">
-                  <label><span (click)="onCreate()">Create new todo</span> or <span>Assign to other</span></label>
+                  <label><span (click)="onCreate()">Create new todo</span></label>
                 </div>
               </div>
               <div *ngFor="let todo of currentOngoingTodos" class="todo-card">
@@ -81,5 +81,5 @@
   </div>
 </div>
 
-<croco-create-todo-modal *ngIf="createTodoModalState" (onCreateEvent)="onCreateEvent($event)"></croco-create-todo-modal>
-<croco-update-todo-modal *ngIf="updateTodoModalState" [modelInput]="selectedTodo" (onUpdateEvent)="onUpdateEvent($event)"></croco-update-todo-modal>
+<croco-create-todo-modal *ngIf="createTodoModalState" (onCreateEvent)="onCreateEvent($event)" (onCloseEvent)="onCreateModalClose()"></croco-create-todo-modal>
+<croco-update-todo-modal *ngIf="updateTodoModalState" [modelInput]="selectedTodo" (onUpdateEvent)="onUpdateEvent($event)" (onCloseEvent)="onUpdateModalClose()"></croco-update-todo-modal>

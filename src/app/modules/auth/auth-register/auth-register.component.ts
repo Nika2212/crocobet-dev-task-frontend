@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { Registration } from '../../../shared/models/registration.model';
 import { NgForm } from '@angular/forms';
+import { GrowlType } from '../../../core/enums/growl-type';
+import { GrowlService } from '../../../core/services/growl.service';
 
 @Component({
   selector: 'croco-auth-register',
@@ -19,7 +21,8 @@ export class AuthRegisterComponent extends BaseComponent implements OnInit, OnDe
   constructor(
     private authService: AuthService,
     private accessTokenService: AccessTokenService,
-    private router: Router
+    private router: Router,
+    private growlService: GrowlService
   ) {
     super();
   }
@@ -38,7 +41,8 @@ export class AuthRegisterComponent extends BaseComponent implements OnInit, OnDe
         if (payload) {
           this.accessTokenService.storeJWTToken(payload.AccessToken);
           this.authService.setCurrentUser(payload.User);
-          this.router.navigate(['main']);
+          this.router.navigate(['main'])
+            .then(() => this.growlService.appear(GrowlType.SUCCESS, 'Welcome ' + this.credentialsModel.Username));
         } else {
           this.isLoading = false;
           this.form.form.controls.Password.setErrors({'incorrect': true});

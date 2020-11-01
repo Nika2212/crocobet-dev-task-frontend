@@ -2,6 +2,8 @@
   <div class="todo-card">
     <div class="card-header">
       <h3>Create Todo</h3>
+
+      <button class="close-btn" (click)="onClose()"></button>
     </div>
     <div class="card-body">
       <form class="card-form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
@@ -49,13 +51,9 @@
         </div>
         <div class="form-group">
           <label for="assigned-users">Assigned Users</label>
-          <div id="assigned-users" class="assigned-users">
-            <div class="username-list">
-              <span *ngIf="currentUser">{{ currentUser.Username }}</span>
-              <span *ngFor="let user of assignedUserList">{{ user.Username }} button</span>
-            </div>
-            <button type="button">1</button>
-          </div>
+          <select required id="assigned-users" name="AssignedUser" class="form-control" [(ngModel)]="assignedUser" (change)="onAssignedUserChange($event)">
+            <option *ngFor="let user of allUsers" [value]="user.Id">{{ user.Username }}</option>
+          </select>
         </div>
 
         <div class="form-group form-actions mb-0">

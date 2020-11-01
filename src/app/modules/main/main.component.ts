@@ -161,4 +161,12 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
     this.updateTodoModalState = false;
     this.updateTodo(todo);
   }
+
+  public onCreateModalClose(): void {
+    this.createTodoModalState = false;
+  }
+
+  public onUpdateModalClose(): void {
+    this.updateTodoModalState = false;
+  }
 }
