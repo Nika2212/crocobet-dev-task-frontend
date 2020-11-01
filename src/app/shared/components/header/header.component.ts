@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../models/user.model';
 import { BaseComponent } from '../base.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'croco-header',
@@ -12,7 +13,8 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   public currentUser: User;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     super();
   }
@@ -25,6 +27,10 @@ export class HeaderComponent extends BaseComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getCurrentUser();
+  }
+
+  public onLogout(): void {
+    this.router.navigate(['auth']);
   }
 
 }

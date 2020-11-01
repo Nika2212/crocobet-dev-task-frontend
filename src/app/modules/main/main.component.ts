@@ -66,6 +66,8 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
 
         this.currentUserTodos = payload;
         this.filterTodos();
+
+        sub.unsubscribe();
       });
   }
 
